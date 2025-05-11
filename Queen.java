@@ -5,8 +5,8 @@ public class Queen extends Piece{
         this.value = 9;
     }
 
-    public void Move(){
-
+    public boolean Move(Coordinates origin, Coordinates destination){
+        return false;
     }
 
     public Piece Copy(){

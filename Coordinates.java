@@ -7,6 +7,11 @@ public class Coordinates {
         Set_Y(y);
     }
 
+    public Coordinates(String xy){
+        Set_X(xy.charAt(0) - '0');
+        Set_Y(xy.charAt(1) - '0');
+    }
+
     public boolean Validate(){
         return this.x == -1 || this.y == -1;
     }

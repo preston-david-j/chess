@@ -14,8 +14,9 @@ public class King extends Piece{
         this.moved = moved;
     }
 
-    public void Move(){
+    public boolean Move(Coordinates origin, Coordinates destination){
         this.moved = true;
+        return false;
     }
 
     public Piece Copy(){

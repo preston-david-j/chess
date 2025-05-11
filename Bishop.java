@@ -5,9 +5,9 @@ public class Bishop extends Piece{
         this.value = 3;
     }
 
-    public void Move(){
-
-    }
+    public boolean Move(Coordinates origin, Coordinates destination){
+        return false;
+    }   
 
     public Piece Copy(){
         return new Bishop(this.colour);

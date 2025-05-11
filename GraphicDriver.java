@@ -26,7 +26,7 @@ public class GraphicDriver {
                     gameButtons[y][x] = new JButton();
                     gameButtons[y][x].setPreferredSize(new Dimension(50, 50));
                     gameButtons[y][x].setName(x + "," + y);
-                    gameButtons[y][x].addActionListener(null); // replace with GameDriver
+                    gameButtons[y][x].addActionListener(new GameDriver()); // replace with GameDriver
                     gameButtons[y][x].setBackground((x + y) % 2 == 0 ? Color.decode("#B88B4A") : Color.decode("#E3C16F"));
 
                     Configure_Button(gameButtons[y][x]);
