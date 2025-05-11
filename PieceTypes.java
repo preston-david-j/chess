@@ -7,6 +7,11 @@ public class PieceTypes{
         queen,
         king
     }
+
+    public static enum PieceSkin{
+        Alpha,
+        Cardinal
+    }
 }
 
 
