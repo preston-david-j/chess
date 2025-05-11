@@ -1,0 +1,1 @@
+A java swing based version of Chess. Currently local singleplayer.
