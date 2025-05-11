@@ -2,7 +2,7 @@ public class King extends Piece{
     public boolean moved;
 
     public King(Colours.Colour colour){
-        this.type = PieceTypes.PieceType.pawn;
+        this.type = PieceTypes.PieceType.king;
         this.colour = colour;
         this.value = 0;
     }
