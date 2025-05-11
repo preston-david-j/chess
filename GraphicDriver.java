@@ -48,6 +48,10 @@ public class GraphicDriver {
                     String path = "Pieces/" + skin + "/" + Board.Get_Piece(current).colour + "-" + Board.Get_Piece(current).type + ".png";
                     gameButtons[y][x].setIcon(Get_Scaled_Icon(path));
                 }
+                else{
+                    gameButtons[y][x].setIcon(null);
+                }
+                
                 gamePanel.add(gameButtons[y][x]);
             }
         }

@@ -9,11 +9,11 @@ public class Coordinates {
 
     public Coordinates(String xy){
         Set_X(xy.charAt(0) - '0');
-        Set_Y(xy.charAt(1) - '0');
+        Set_Y(xy.charAt(2) - '0');
     }
 
     public boolean Validate(){
-        return this.x == -1 || this.y == -1;
+        return this.x != -1 && this.y != -1;
     }
 
     public boolean Equals(Coordinates otherCoordinates){
@@ -22,20 +22,20 @@ public class Coordinates {
 
     public boolean Set_X(int x){
         if(x >= 0 && x <= 7){this.x = x; return true;}
+        else{this.x = -1;}
         return false;
     }
 
     public boolean Set_Y(int y){
         if(y >= 0 && y <= 7){this.y = y; return true;}
+        else{this.y = -1;}
         return false;
     }
 
     public boolean Set(int x, int y){
-        if(x < 0 || x > 7){return false;}
-        if(y < 0 || y > 7){return false;}
-        this.x = x;
-        this.y = y;
-        return true;
+        boolean xValid = Set_X(x);
+        boolean yValid = Set_Y(y);
+        return xValid && yValid;
     }
 
     public int X(){

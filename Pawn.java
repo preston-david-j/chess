@@ -15,8 +15,11 @@ public class Pawn extends Piece{
     }
 
     public boolean Move(Coordinates origin, Coordinates destination){
+
+        Board.Move(origin, destination);
+
         this.moved = true;
-        return false;
+        return true;
     }
 
     public Piece Copy(){
