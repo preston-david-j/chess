@@ -1,5 +1,8 @@
 public abstract class Piece{
-    public ChessType type;
-    public int value;
+    protected PieceTypes.PieceType type;
+    protected Colours.Colour colour;
+    protected int value;
     public abstract void Move();
+    public abstract Piece Copy();
+    protected abstract Coordinates[] Attack_Trace();
 }
