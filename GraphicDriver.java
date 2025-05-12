@@ -5,23 +5,23 @@ import java.awt.event.*;
 
 public class GraphicDriver implements ComponentListener{
     private static boolean firstRender = true;
+    private static boolean manualResize = false;
     private static GraphicDriver instance = new GraphicDriver();
     
     private static JFrame frame = new JFrame();
     private static JPanel gamePanel = new JPanel(new GridLayout(8, 8, 0, 0));
     private static JButton[][] gameButtons = new JButton[8][8];
     private static HashMap<String, ImageIcon> imageCache = new HashMap<>();
+    private static Dimension lastSize = new Dimension(400,400);
 
     public static void Render_Graphics(PieceTypes.PieceSkin skin){
         if(firstRender){
+            manualResize = true;
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(400,400);
             frame.setLayout(new BorderLayout());
             frame.setTitle("Local Chess Game");
             frame.addComponentListener(instance);
-
-            gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            gamePanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+            frame.setSize(400,400);
 
             for(int y = 0; y < 8; y++){
                 for(int x = 0; x < 8; x++){
@@ -56,6 +56,9 @@ public class GraphicDriver implements ComponentListener{
     }
 
     public void componentResized(ComponentEvent e){
+        if(manualResize){manualResize = false; return;}
+        if(e.getComponent().getSize().equals(lastSize)){return;}
+        else{lastSize = e.getComponent().getSize();}
         imageCache.clear();
         Render_Graphics(PieceTypes.activeSkin);
     }
