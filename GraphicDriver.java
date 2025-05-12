@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.awt.event.*;
 
-public class GraphicDriver {
+public class GraphicDriver implements ComponentListener{
     private static boolean firstRender = true;
-
+    private static GraphicDriver instance = new GraphicDriver();
+    
     private static JFrame frame = new JFrame();
     private static JPanel gamePanel = new JPanel(new GridLayout(8, 8, 0, 0));
     private static JButton[][] gameButtons = new JButton[8][8];
@@ -12,11 +14,11 @@ public class GraphicDriver {
 
     public static void Render_Graphics(PieceTypes.PieceSkin skin){
         if(firstRender){
-            frame.setDefaultCloseOperation(3);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400,400);
             frame.setLayout(new BorderLayout());
-            frame.setSize(400,397);
-            frame.setResizable(false);
             frame.setTitle("Local Chess Game");
+            frame.addComponentListener(instance);
 
             gamePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
             gamePanel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -24,12 +26,12 @@ public class GraphicDriver {
             for(int y = 0; y < 8; y++){
                 for(int x = 0; x < 8; x++){
                     gameButtons[y][x] = new JButton();
-                    gameButtons[y][x].setPreferredSize(new Dimension(50, 50));
                     gameButtons[y][x].setName(x + "," + y);
                     gameButtons[y][x].addActionListener(new GameDriver()); // replace with GameDriver
                     gameButtons[y][x].setBackground((x + y) % 2 == 0 ? Color.decode("#B88B4A") : Color.decode("#E3C16F"));
 
                     Configure_Button(gameButtons[y][x]);
+                    gamePanel.add(gameButtons[y][x]);
                 }
             }
             
@@ -37,8 +39,6 @@ public class GraphicDriver {
             frame.setVisible(true);
             firstRender = false;
         }
-        
-        gamePanel.removeAll();
 
         for(int y = 0; y < 8; y++){
             for(int x = 0; x < 8; x++){
@@ -51,14 +51,18 @@ public class GraphicDriver {
                 else{
                     gameButtons[y][x].setIcon(null);
                 }
-                
-                gamePanel.add(gameButtons[y][x]);
             }
         }
-
-        gamePanel.revalidate();
-        gamePanel.repaint();
     }
+
+    public void componentResized(ComponentEvent e){
+        imageCache.clear();
+        Render_Graphics(PieceTypes.activeSkin);
+    }
+
+    public void componentMoved(ComponentEvent e) {}
+    public void componentShown(ComponentEvent e) {}
+    public void componentHidden(ComponentEvent e) {}
 
     private static void Configure_Button(JButton button){
         button.setText(null);
@@ -73,7 +77,7 @@ public class GraphicDriver {
         }
 
         ImageIcon currentImage = new ImageIcon(path);
-        Image scaledImage = currentImage.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        Image scaledImage = currentImage.getImage().getScaledInstance(frame.getWidth() / 8, frame.getHeight() / 8, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         imageCache.put(path, scaledIcon);

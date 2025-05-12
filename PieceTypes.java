@@ -1,4 +1,7 @@
 public class PieceTypes{
+
+    public static PieceSkin activeSkin = PieceSkin.Alpha;
+
     public static enum PieceType{
         pawn,
         knight,
