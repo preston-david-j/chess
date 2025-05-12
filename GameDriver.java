@@ -3,8 +3,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class GameDriver implements ActionListener{
-    public static Colours.Colour turn = Colours.Colour.white;
-    public static Coordinates currentCoordinates = new Coordinates(4, 4);
+    private static Colours.Colour turn = Colours.Colour.white;
+    private static Coordinates currentCoordinates = new Coordinates(4, 4);
 
     public void actionPerformed(ActionEvent e){
         Piece currentPiece = Board.Get_Piece(currentCoordinates);

@@ -1,5 +1,5 @@
 public class King extends Piece{
-    public boolean moved;
+    private boolean moved;
 
     public King(Colours.Colour colour){
         this.type = PieceTypes.PieceType.king;
@@ -23,7 +23,11 @@ public class King extends Piece{
         return new King(this.colour, this.moved);
     }
 
-    protected Coordinates[] Attack_Trace(){
+    public Coordinates[] Attack_Trace(){
+        return new Coordinates[0];
+    }
+
+    public Coordinates[] Valid_Moves(Coordinates origin){
         return new Coordinates[0];
     }
 }

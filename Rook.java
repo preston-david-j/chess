@@ -1,5 +1,5 @@
 public class Rook extends Piece{
-    public boolean moved;
+    private boolean moved;
 
     public Rook(Colours.Colour colour){
         this.type = PieceTypes.PieceType.pawn;
@@ -23,7 +23,11 @@ public class Rook extends Piece{
         return new Rook(this.colour, this.moved);
     }
 
-    protected Coordinates[] Attack_Trace(){
+    public Coordinates[] Attack_Trace(){
+        return new Coordinates[0];
+    }
+
+    public Coordinates[] Valid_Moves(Coordinates origin){
         return new Coordinates[0];
     }
 }

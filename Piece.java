@@ -4,5 +4,6 @@ public abstract class Piece{
     protected int value;
     public abstract boolean Move(Coordinates origin, Coordinates destination);
     public abstract Piece Copy();
-    protected abstract Coordinates[] Attack_Trace();
+    public abstract Coordinates[] Attack_Trace();
+    public abstract Coordinates[] Valid_Moves(Coordinates origin);
 }

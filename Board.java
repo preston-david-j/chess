@@ -1,5 +1,6 @@
 public class Board {
     private static Piece[][] board;
+    private static Coordinates[] lastMove = new Coordinates[] {new Coordinates(0,0), new Coordinates(0,0)};
 
     public static void Generate_Board(BoardType type){
         switch(type){
@@ -22,7 +23,13 @@ public class Board {
         Piece returnPiece = Get_Piece(destination);
         board[destination.Y()][destination.X()] = board[origin.Y()][origin.X()].Copy();
         board[origin.Y()][origin.X()] = null;
+        lastMove[0] = origin;
+        lastMove[1] = destination;
         return returnPiece;
+    }
+
+    public static Coordinates[] Get_Last_Move(){
+        return lastMove;
     }
 
     private static Piece[][] Generate_Standard(){

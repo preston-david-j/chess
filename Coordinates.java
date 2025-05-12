@@ -46,4 +46,12 @@ public class Coordinates {
         return this.y;
     }
 
+    public Coordinates Copy(){
+        return new Coordinates(this.x, this.y);
+    }
+
+    public void Display(){
+        System.out.println(this.x + "," + this.y);
+    }
+
 }

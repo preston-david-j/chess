@@ -13,7 +13,11 @@ public class Bishop extends Piece{
         return new Bishop(this.colour);
     }
 
-    protected Coordinates[] Attack_Trace(){
+    public Coordinates[] Attack_Trace(){
+        return new Coordinates[0];
+    }
+
+    public Coordinates[] Valid_Moves(Coordinates origin){
         return new Coordinates[0];
     }
 }

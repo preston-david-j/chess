@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class GraphicDriver {
     private static boolean firstRender = true;
 
-    public static JFrame frame = new JFrame();
-    public static JPanel gamePanel = new JPanel(new GridLayout(8, 8, 0, 0));
-    public static JButton[][] gameButtons = new JButton[8][8];
-    public static HashMap<String, ImageIcon> imageCache = new HashMap<>();
+    private static JFrame frame = new JFrame();
+    private static JPanel gamePanel = new JPanel(new GridLayout(8, 8, 0, 0));
+    private static JButton[][] gameButtons = new JButton[8][8];
+    private static HashMap<String, ImageIcon> imageCache = new HashMap<>();
 
     public static void Render_Graphics(PieceTypes.PieceSkin skin){
         if(firstRender){
