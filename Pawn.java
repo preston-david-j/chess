@@ -21,7 +21,6 @@ public class Pawn extends Piece{
         Coordinates[] validMoves = Valid_Moves(origin);
 
         for(int i = 0; i < validMoves.length; i++){
-            validMoves[i].Display();
             if(validMoves[i].Equals(destination)){
                 this.moved = true;
                 if(destination.X() != origin.X() && Board.Get_Piece(destination) == null){
