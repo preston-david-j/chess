@@ -2,7 +2,7 @@ public class Rook extends Piece{
     private boolean moved;
 
     public Rook(Colours.Colour colour){
-        this.type = PieceTypes.PieceType.pawn;
+        this.type = PieceTypes.PieceType.rook;
         this.colour = colour;
         this.value = 5;
     }

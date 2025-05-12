@@ -1,6 +1,9 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Board {
     private static Piece[][] board;
-    private static Coordinates[] lastMove = new Coordinates[] {new Coordinates(0,0), new Coordinates(0,0)};
+    private static List<Move> history = new ArrayList<>();
 
     public static void Generate_Board(BoardType type){
         switch(type){
@@ -23,16 +26,26 @@ public class Board {
         Piece returnPiece = Get_Piece(destination);
         board[destination.Y()][destination.X()] = board[origin.Y()][origin.X()].Copy();
         board[origin.Y()][origin.X()] = null;
-        lastMove[0] = origin;
-        lastMove[1] = destination;
+        history.add(new Move(origin, destination, Get_Piece(destination), returnPiece, false));
         return returnPiece;
     }
 
-    public static Coordinates[] Get_Last_Move(){
-        return lastMove;
+    public static Piece En_Passant(Coordinates origin, Coordinates destination){
+        Coordinates returnCoordinates = new Coordinates(origin.Y(), destination.X());
+        Piece returnPiece = Get_Piece(returnCoordinates);
+        board[destination.Y()][destination.X()] = board[origin.Y()][origin.X()].Copy();
+        board[origin.Y()][origin.X()] = null;
+        board[returnCoordinates.Y()][returnCoordinates.X()] = null;
+        history.add(new Move(origin, destination, Get_Piece(destination), returnPiece, true));
+        return returnPiece;
+    }
+
+    public static Move Get_Last_Move(){
+        return history.getLast();
     }
 
     private static Piece[][] Generate_Standard(){
+        history.add(new Move(new Coordinates(-1, -1), new Coordinates(-1, -1), null, null, false));
         return new Piece[][]
         {
             {new Rook(Colours.Colour.black), new Knight(Colours.Colour.black), new Bishop(Colours.Colour.black), new Queen(Colours.Colour.black),
