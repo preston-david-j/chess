@@ -27,16 +27,18 @@ public class Board {
         board[destination.Y()][destination.X()] = board[origin.Y()][origin.X()].Copy();
         board[origin.Y()][origin.X()] = null;
         history.add(new Move(origin, destination, Get_Piece(destination), returnPiece, false));
+
         return returnPiece;
     }
 
     public static Piece En_Passant(Coordinates origin, Coordinates destination){
-        Coordinates returnCoordinates = new Coordinates(origin.Y(), destination.X());
+        Coordinates returnCoordinates = new Coordinates(destination.X(), origin.Y());
         Piece returnPiece = Get_Piece(returnCoordinates);
         board[destination.Y()][destination.X()] = board[origin.Y()][origin.X()].Copy();
         board[origin.Y()][origin.X()] = null;
         board[returnCoordinates.Y()][returnCoordinates.X()] = null;
         history.add(new Move(origin, destination, Get_Piece(destination), returnPiece, true));
+
         return returnPiece;
     }
 
