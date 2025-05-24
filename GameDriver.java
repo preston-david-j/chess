@@ -10,13 +10,24 @@ public class GameDriver implements ActionListener{
         JButton sourceButton = (JButton)e.getSource();
         Coordinates currentClick = new Coordinates(sourceButton.getName());
 
+        currentClick.Display();
+
         boolean moveOccured = false;
 
         if(currentCoordinates.Validate()){
             Piece currentPiece = Board.Get_Piece(currentCoordinates);
+            Piece destinationPiece = Board.Get_Piece(currentClick);
+
             if(currentPiece != null && currentPiece.colour == turn){
                 if(currentCoordinates != currentClick){
-                    moveOccured = currentPiece.Move(currentCoordinates, currentClick);
+                    if(destinationPiece != null){
+                        if(destinationPiece.colour != currentPiece.colour){
+                            moveOccured = currentPiece.Move(currentCoordinates, currentClick);
+                        }
+                    }
+                    else{
+                        moveOccured = currentPiece.Move(currentCoordinates, currentClick);
+                    }
                 }
                 else{
                     currentCoordinates = new Coordinates(-1, -1);
